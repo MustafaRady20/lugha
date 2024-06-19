@@ -1,0 +1,40 @@
+
+.about-arabic-lang {
+    direction: rtl;
+  }
+  .about-arabic-lang .container{
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    padding: 100px 20px;
+  }
+  .about-lugha{
+    display: flex;
+    flex-direction: column;
+  }
+  .about-lugha .title{
+    display: flex;
+    justify-content: start;
+    /* align-items: center; */
+    gap: 10px;
+  }
+  .about-lugha .title .icon{
+    position: relative;
+      top: 5px;
+  }
+
+  .about-lugha .subtitle p{
+    color: rgba(135, 134, 134, 0.831);
+  }
+  .subject{
+    padding: 10px 25px;
+  }
+
+  .subject span{
+    font-size: 25px;
+    display: block;
+  }
+  .subject li{
+    text-align:justify;
+    margin-bottom: 20px;
+    line-height: 1.7;
+    font-weight:400;
+  }

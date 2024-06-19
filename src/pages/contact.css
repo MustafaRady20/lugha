@@ -1,0 +1,22 @@
+.contactForm{
+    margin: auto;
+    max-width: 80%;
+    
+}
+
+.contact-us .container{
+    margin-top: 100px;
+    text-align: center;
+}
+
+.contact-us textarea{
+    min-height: 200px !important;
+    direction: rtl;
+}
+
+.contact-us .textAreaLabel{
+    color: rgb(146, 144, 144);
+    direction: rtl !important;
+    width: 100%;
+
+}

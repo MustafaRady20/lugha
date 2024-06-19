@@ -1,0 +1,14 @@
+.registerBtn{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.registerBtn a{
+    margin-right: 20px;
+    text-decoration: none;
+    color: rgb(17, 18, 18);
+    top: 10px;
+    position: relative;
+    
+}

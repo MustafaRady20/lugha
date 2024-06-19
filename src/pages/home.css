@@ -1,0 +1,45 @@
+
+.home{
+    position: relative;
+    background: url("../Images/Ottoman-Calligraphy-at-the-TopkapÄ±-Palace-in-Istanbul-Turkey-Islamic-Architecture-001.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 75vh;
+  }
+  .overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.815);
+  }
+  
+  .home .container{
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: -40px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  }
+  
+  .home .container .homeLogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+  }
+  .home .container .homeLogo img{
+    width: 30%;
+  }
+  .home .container .homeLogo .pome{
+    margin-top: 52px;
+  }
+  .homeSearch{
+    width: 100%;
+  }
+  

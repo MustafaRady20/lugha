@@ -1,0 +1,25 @@
+.error404{
+    font-size: 100px;
+}
+
+
+.error{
+    font-size: 300px;
+}
+
+.ErrorContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ErrorContent a {
+    color: rgb(0, 0, 0);
+    background-color: rgb(51, 175, 148);
+    text-decoration: none;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 20px;
+}

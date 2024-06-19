@@ -1,0 +1,82 @@
+.mostSearchedWords .container{
+    direction: rtl;
+    padding: 50px 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;  
+     height: 100%;
+    margin-bottom: 0;
+}
+.mostSearchedWords .container .title{
+    margin-bottom: 50px;
+}
+
+.mostSearchedWords .container .title h2{
+    position: relative;
+    font-size: 35px;
+    color: #5bc9b6;
+    text-align: center;
+}
+.mostSearchedWords .container .title h2::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background-color: rgb(91, 200, 182);
+    
+}
+.mostSearchedWords .container .content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.mostSearchedWords .container .content .item{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+.mostSearchedWords .container .content .item .word{
+    color: #5bc9b6;
+    padding: 15px 0;
+}
+.mostSearchedWords .container .content .item .meaning{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+}
+.mostSearchedWords .container .content .item .meaning .root{
+    margin-bottom: 20px;
+}
+.mostSearchedWords .container .content .item .meaning .result{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.mostSearchedWords .links button{
+    background-color: #5bc9b6;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin-right: 10px;
+}
+.nothingToshow{
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+    color: #9e9e9ece;
+}
+.goback{
+    background-color: #5bc9b6;
+    width: fit-content;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+}
