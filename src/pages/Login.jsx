@@ -1,23 +1,29 @@
 import React, { useState } from 'react'
 import "./login.css"
 import { NavLink, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { actLogin } from '../store/loging'
+import { useDispatch, useSelector } from 'react-redux'
 export default function Login() {
   const navigate = useNavigate()
-  const [email, setEmail] = useState()
+  const dispatch = useDispatch()
+  const { loggedIn, username } = useSelector(state => state.login)
+  const [name, setName] = useState()
   const [pass, setPass] = useState()
-  const [loggedIn, setLoggedIn] = useState(false)
+
+
   const onSubmit = async () => {
-    if (email.includes("@") && pass.length >= 5) {
-      const response = await axios.post("http://localhost:3000/Login", { email, pass })
-      console.log(response)
-      if (response.status === 201) {
-        setLoggedIn(true)
-      }
+    console.log("clicked")
+    let data = {
+      username: name,
+      password: pass
+    }
+    if (name && pass.length >= 5) {
+      dispatch(actLogin(data))
     }
   }
 
   if (loggedIn) {
+    console.log(username)
     navigate("/")
   }
   return (
@@ -27,8 +33,8 @@ export default function Login() {
 
       <div className="row mt-3 text-end">
         <div class="col">
-          <label htmlFor="email">عنوان البريد الالكتروني </label>
-          <input type="text" class="form-control" aria-label="email" id='email' onChange={(e) => setEmail(e.target.value)} />
+          <label htmlFor="name">اسم المستخدم </label>
+          <input type="text" class="form-control" aria-label="name" id='name' onChange={(e) => setName(e.target.value)} />
         </div>
       </div>
       <div className="row mt-3 text-end">

@@ -1,14 +1,14 @@
-.loggingLayout{
+.loggingLayout {
     position: relative;
     background: url("../Images/localization.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 80vh;
-    
+
 }
 
-.loggingLayout .content{
+.loggingLayout .content {
     display: flex;
     justify-content: space-around;
     /* margin-left: 100px; */
@@ -16,11 +16,18 @@
     margin-top: 100px;
     /* gap: 350px; */
     left: 50px;
+    flex-wrap: wrap;
 }
 
-
-.content .lughaLogo img{
+.content .lughaLogo img {
     position: relative;
     z-index: 100;
     width: 400px;
+}
+
+
+@media (max-width:1000px) {
+    .loggingLayout .content .lughaLogo{
+        display: none;
+    }
 }

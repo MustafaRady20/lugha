@@ -1,29 +1,40 @@
 import "./mostSearchedWords.css"
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { useDispatch, useSelector } from "react-redux";
+import { actGetMeaning } from "../store/meaningSlice";
+import { useNavigate } from "react-router-dom";
+import Search from "../components/Search/Search";
 
 
 function MostSearchedWords() {
   const [words, setWords] = useState([])
+  const navigate = useNavigate()
+  const { username } = useSelector((state) => state.login)
+  const { loading } = useSelector(state => state.meaning)
+  const dispatch = useDispatch()
 
-
-  const getData = async () => {
-    const response = await axios.get("http://localhost:3000/mostSearchedWords")
-    if (response.status === 200) {
-      setWords(response.data)
+  const search = (item) => {
+    dispatch(actGetMeaning({ data: item, username: username }))
+    if (loading === "success") {
+      navigate("/result")
     }
+    console.log(loading)
   }
 
-  const addToFav = async (item) => {
-    const response = await axios.post("http://localhost:3000/favWords", item)
-    if (response.status !== 201) {
-      alert("Somthing Wrong , try again")
-    }
-  }
+
   useEffect(() => {
+    const getData = async () => {
+      const response = await axios.get("http://localhost:8080/top10")
+      console.log(response)
+      if (response.status === 200) {
+        setWords(response.data)
+      }
+    }
     getData()
+
   }, [])
+
   return (
     <div className="mostSearchedWords">
       <div className="container">
@@ -33,33 +44,24 @@ function MostSearchedWords() {
           </h2>
         </div>
 
-
+        {loading === "pending" && <p>Loading .....</p>}
+        <div className="subtitle" style={{ width: "100%", textAlign: "center" }}>
+          <h2>قم بالضغط على الكلمة للبحث </h2>
+        </div>
         <div className="content">
 
           {words.length ? (
             words.map((item) => {
-              return <div className="item" key={item.id}>
-                <div className="word">
-                  <h4>{item.word}</h4>
-                </div>
-                <div className="meaning">
-                  <div className="root">
-                    <h5>{`[${item.root}]`}</h5>
-                  </div>
-                  <div className="result">
-                    <h5>
-                      {`مصدر : ${item.source}`}
-                    </h5>
-
-                    {item.emaxple}
-                  </div>
-                </div>
-                <div className="links">
-                  <button className="addToFav" onClick={() => addToFav(item)}>إضافة إلي المفضلة</button>
-                </div>
+              return <div className="topWord" key={item} onClick={() => { search(item) }}>
+                <h4>{item}</h4>
               </div>
             })
           ) : <p>لا يوجد كلمات لعرضها</p>}
+        </div>
+        <br /><br /><br />
+        <div className="search">
+          <h2>هل تريد البحث عن كلمة اخرى ؟</h2>
+          <Search placeholder="ابحث عن معنى اخر" />
         </div>
       </div>
     </div >

@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import LoggingLayout from "./pages/LogingLayout"
 import References from './pages/References';
 import MostSearchedWords from './pages/MostSearchedWords';
-
+import ProtectRoutes from './components/protectRoutes.jsx';
 import ResultPage from "./pages/ResultPage.jsx"
 import UserFavs from './pages/UserFavs.jsx';
 const router = createBrowserRouter([
@@ -26,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "favs",
         element: <UserFavs />
+      },
+      {
+        path: "error",
+        element: <Error />
       },
       {
         path: "contact-us",
