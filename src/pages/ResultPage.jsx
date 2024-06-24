@@ -8,7 +8,6 @@ import { addToFav } from "../store/favSlice"
 function RsultPage() {
 
   const navigate = useNavigate()
-  const { username } = useSelector((state) => state.login)
   const { data, loading } = useSelector((state) => state.meaning)
   const dispatch = useDispatch()
   const [searchInContext, setSearchInConytext] = useState(false)
@@ -49,7 +48,7 @@ function RsultPage() {
     console.log(+response.data.slice(0, 1))
   }
 
- 
+
   return (
     <div className="mostSearchedWords">
       <div className="container">
@@ -87,8 +86,8 @@ function RsultPage() {
                               <div className="row">
                                 <span>المعنى : <span className="res">{word.resultSenseDTO[0].definition}</span></span>
                                 {word.resultSenseDTO[0].example ? <span>مثال: {word.resultSenseDTO[0].example}</span> : ""}
-
                               </div>
+                         
                               <div className="row">
                                 {word.resultSenseDTO[0].coins.length > 0 ? <span>
                                   <span>
@@ -107,11 +106,69 @@ function RsultPage() {
                                 </span> : ""}
 
                               </div>
-                              
+                              <div className="row">
+                                {word.resultSenseDTO[0].synonyms.length > 0 ? <span>
+                                  <span>
+                                    المرادفات  :
+                                  </span>
+                                  {
+
+                                    word.resultSenseDTO[0].synonyms.map((word, index) => {
+
+                                      return <span key={word.id} style={{ marginRight: 10, marginLeft: 10 }} className="res">
+                                        {word.word}،
+                                      </span>
+                                    })
+                                  }
+
+                                </span> : ""}
+
+                              </div>
+                              <div className="row">
+                                {word.resultSenseDTO[0].brokenPlural.length > 0 ? <span>
+                                  <span>
+                                    الجمع  :
+                                  </span>
+                                  {
+
+                                    word.resultSenseDTO[0].brokenPlural.map((word, index) => {
+
+                                      return <span key={word.id} style={{ marginRight: 10, marginLeft: 10 }} className="res">
+                                        {word.word}،
+                                      </span>
+                                    })
+                                  }
+
+                                </span> : ""}
+
+                              </div>
+                              <div className="row">
+                                {
+                                  word.resultSenseDTO[0].conjugation.presentVerb ? <span>
+                                    <span>
+                                      الصيغ الاخرى من الفعل  :
+                                    </span>
+                                    {
+
+                                      <span style={{ marginRight: 10, marginLeft: 10 }} className="res">
+                                        {word.resultSenseDTO[0].conjugation.presentVerb} ،
+                                        {word.resultSenseDTO[0].conjugation.passiveVerb} ،
+                                        {word.resultSenseDTO[0].conjugation.passivePresentVerb} ،
+                                        {word.resultSenseDTO[0].conjugation.imperativeVerb} ،
+                                      </span>
+                                    }
+
+                                  </span> : ""
+                                }
+
+                              </div>
+
+
+
                             </div>
                             <div className=" add_romver_favs">
-                                <button onClick={() => dispatch(addToFav(word))}>اضافة الي المفضلة</button>
-                              </div>
+                              <button onClick={() => dispatch(addToFav(word))}>اضافة الي المفضلة</button>
+                            </div>
                           </div >
                         </>
                       }) : (
@@ -126,15 +183,27 @@ function RsultPage() {
                       )
                     }
                   </div>
-                  <div className="buttons">
-                    {
-                      data.Words.length > 0 && (<div className="openSearchInContext searchIngeneralDic">
-                        <button onClick={openSearchInContextHandler}>بحث في سياق</button>
-                      </div>)
-
-                    }
-                    
+                  <div>
+                    <h2>كلمات تحمل نفس الجذر</h2>
+                    <div className="wordsWithSameRoot">
+                      {data.wordsSameRootList.length > 0 ? (
+                        data.wordsSameRootList.map((word) => {
+                          return <div className={word.pos ? "sameRoot" : "block"}>
+                            {`${word.name} - ${word.pos}`}
+                          </div>
+                        })
+                      ) : (<p>لا يوجد</p>)}
+                    </div>
                   </div>
+                </div>
+                <div className="buttons">
+                  {
+                    data.Words.length > 0 && (<div className="openSearchInContext searchIngeneralDic">
+                      <button onClick={openSearchInContextHandler}>بحث في سياق</button>
+                    </div>)
+
+                  }
+
                 </div>
               </div>
             )

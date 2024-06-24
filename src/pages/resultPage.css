@@ -104,3 +104,22 @@ span {
 .res {
     color: #06836e;
 }
+
+.wordsWithSameRoot{
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+.sameRoot{
+    background-color: #06836e;
+    color: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+.block{
+    display: none;
+}

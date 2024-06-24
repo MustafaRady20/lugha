@@ -50,7 +50,7 @@ function MostSearchedWords() {
         </div>
         <div className="content">
 
-          {words.length ? (
+          {words ? (
             words.map((item) => {
               return <div className="topWord" key={item} onClick={() => { search(item) }}>
                 <h4>{item}</h4>
