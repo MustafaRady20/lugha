@@ -10,8 +10,8 @@ export const favSlice = createSlice({
         addToFav: (state, action) => {
             state.favsList.push(action.payload)
         },
-        reomveFromFavs: (state, id) => {
-            state.favsList = state.favsList.filter((item) => item.entryId !== id)
+        reomveFromFavs: (state, action) => {
+            state.favsList = state.favsList.filter((item) => item.entryId !== action.payload)
         },
         emptyFavs: (state) => {
             state.favsList = []

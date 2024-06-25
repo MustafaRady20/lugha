@@ -48,7 +48,6 @@ function RsultPage() {
     console.log(+response.data.slice(0, 1))
   }
 
-
   return (
     <div className="mostSearchedWords">
       <div className="container">
@@ -62,15 +61,24 @@ function RsultPage() {
             <div className="loading">
               <p>loading....</p>
             </div>
-            : loading === "faild" ? navigate("/error") : (
+            : loading === "faild" ? navigate("/error") : data.Words !== null ? (
               <div className="content">
                 <div className="item" >
                   <div className="word">
-                    <h4>{`..${data.UserSearchWord ? data.UserSearchWord : ""}`}</h4>
+                    <h4 className="res">{`${data.UserSearchWord ? data.UserSearchWord : ""}`}</h4>
                   </div>
                   <div className="definitions">
                     {
-                      data.Words?.length > 0 ? data.Words?.map((word, index) => {
+                      data.Words === null ? (
+                        <>
+                          <div className="generalDic">
+                            {meaningInGeneralDic !== 1 ? (meaningInGeneralDic) : meaningInGeneralDic === 1 ? "لايتوافر نتائج" : "...."}
+                          </div>
+                          <div className="searchIngeneralDic">
+                            <button onClick={() => SearchInGeneralDic()}>بحث في المعجم المعاصر</button>
+                          </div>
+                        </>
+                      ) : data.Words.length > 0 ? data.Words.map((word, index) => {
                         return <>
                           <div className="subword" key={word.entryId}>
 
@@ -87,7 +95,7 @@ function RsultPage() {
                                 <span>المعنى : <span className="res">{word.resultSenseDTO[0].definition}</span></span>
                                 {word.resultSenseDTO[0].example ? <span>مثال: {word.resultSenseDTO[0].example}</span> : ""}
                               </div>
-                         
+
                               <div className="row">
                                 {word.resultSenseDTO[0].coins.length > 0 ? <span>
                                   <span>
@@ -164,29 +172,26 @@ function RsultPage() {
                               </div>
 
 
-
                             </div>
                             <div className=" add_romver_favs">
                               <button onClick={() => dispatch(addToFav(word))}>اضافة الي المفضلة</button>
                             </div>
                           </div >
                         </>
-                      }) : (
-                        <>
-                          <div className="generalDic">
-                            {meaningInGeneralDic !== 1 ? (meaningInGeneralDic) : meaningInGeneralDic === 1 ? "لايتوافر نتائج" : "...."}
-                          </div>
-                          <div className="searchIngeneralDic">
-                            <button onClick={() => SearchInGeneralDic()}>بحث في المعجم المعاصر</button>
-                          </div>
-                        </>
-                      )
+                      }) : <>
+                        <div className="generalDic">
+                          {meaningInGeneralDic !== 1 ? (meaningInGeneralDic) : meaningInGeneralDic === 1 ? "لايتوافر نتائج" : "...."}
+                        </div>
+                        <div className="searchIngeneralDic">
+                          <button onClick={() => SearchInGeneralDic()}>بحث في المعجم المعاصر</button>
+                        </div>
+                      </>
                     }
                   </div>
                   <div>
                     <h2>كلمات تحمل نفس الجذر</h2>
                     <div className="wordsWithSameRoot">
-                      {data.wordsSameRootList.length > 0 ? (
+                      {data.wordsSameRootList?.length > 0 ? (
                         data.wordsSameRootList.map((word) => {
                           return <div className={word.pos ? "sameRoot" : "block"}>
                             {`${word.name} - ${word.pos}`}
@@ -206,7 +211,14 @@ function RsultPage() {
 
                 </div>
               </div>
-            )
+            ) : <>
+              <div className="generalDic">
+                {meaningInGeneralDic !== 1 ? (meaningInGeneralDic) : meaningInGeneralDic === 1 ? "لايتوافر نتائج" : "...."}
+              </div>
+              <div className="searchIngeneralDic">
+                <button onClick={() => SearchInGeneralDic()}>بحث في المعجم المعاصر</button>
+              </div>
+            </>
         }
         <div className={`searchInContext ${searchInContext ? "" : "hide"} `}>
           <p>هل تريد البحث عن الكلمة داخل سياق معين ؟</p>

@@ -1,8 +1,8 @@
 import "./mostSearchedWords.css"
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Search from "../components/Search/Search";
-
+import { reomveFromFavs } from "../store/favSlice"
 
 import { Navigate } from "react-router-dom"
 
@@ -11,6 +11,7 @@ function UserFavs() {
 
     const { favsList } = useSelector(state => state.favs)
     const { username } = useSelector((state) => state.login)
+    const dispatch = useDispatch()
     console.log(favsList)
 
 
@@ -64,6 +65,9 @@ function UserFavs() {
 
                                             </div>
 
+                                        </div>
+                                        <div className=" add_romver_favs">
+                                            <button onClick={() => dispatch(reomveFromFavs(word.entryId))}>حذف من المفضلة</button>
                                         </div>
                                     </div >
                                 </>
