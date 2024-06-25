@@ -189,7 +189,7 @@ function RsultPage() {
                     }
                   </div>
                   <div>
-                    <h2>كلمات تحمل نفس الجذر</h2>
+                    <h2>كلمات متعلقة</h2>
                     <div className="wordsWithSameRoot">
                       {data.wordsSameRootList?.length > 0 ? (
                         data.wordsSameRootList.map((word) => {
